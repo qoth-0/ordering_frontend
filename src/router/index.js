@@ -1,0 +1,31 @@
+import {createRouter, createWebHistory} from 'vue-router';
+import HomeComponent from '@/components/HomeComponent';
+import LoginComponent from '@/views/LoginComponent'
+// export default인 경우에는 {} 필요없고, 여러 요소가 있을 경우에는 {} 필요
+import { memberRoutes } from './memberRouter';
+import { orderRoutes } from './orderRouter';
+
+const routes = [    
+    {
+        path: '/', // url 경로 지정
+        name: 'HOME', // 라우터 이름
+        component: HomeComponent // 보여줄 컴포넌트 - 사용하기 위해 상단에 import 필요
+    },
+    {
+        path: '/login', 
+        name: 'Login', 
+        component: LoginComponent
+    },
+
+    // 멤버 관련 경로 추가
+    ...memberRoutes, // ...(스프레드 연산자) : 배열 요소를 다른 배열요소에 합칠 때 사용
+    ...orderRoutes
+];
+const router = createRouter({
+    // vue-router는 내부적으로 두가지 방식의 히스토리(뒤로가기 가능) 관리를 제공
+    // createWebHistory(주로 사용), createHashHistory
+    history: createWebHistory(),
+    routes
+});
+
+export default router;
