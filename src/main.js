@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from '@/router/index'
 import '@/assets/css/bootstrap.min.css'
 import axios from 'axios'; 
+import store from './store/cart.js'
 
 // index.html의 id가 app인 태그에 마운트가 되도록하는 코드
 // createApp(App).mount('#app') 
@@ -19,4 +20,5 @@ axios.interceptors.response.use(response => response, error => {
 
 // vue애플리케이션에서 전역적으로 기능을 사용할 경우에 아래와 같이 use 사용
 app.use(router);
+app.use(store);
 app.mount('#app');

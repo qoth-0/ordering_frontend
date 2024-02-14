@@ -50,7 +50,7 @@ export default {
         try {
             const token = localStorage.getItem('token');
             const headers = {Authorization: `Bearer ${token}`} 
-            const response = await axios.get(this.apiUrl, {headers});
+            const response = await axios.get(`${process.env.VUE_APP_API_BASE_URL}${this.apiUrl}`, {headers});
             this.orderList = response.data;
         }catch(error) {
             console.log(error);
@@ -69,7 +69,7 @@ export default {
                 try {
                     const token = localStorage.getItem('token');
                     const headers = {Authorization: `Bearer ${token}`} 
-                    await axios.delete(`http://localhost:8080/order/${orderId}/cancel`, {headers});
+                    await axios.delete(`${process.env.VUE_APP_API_BASE_URL}/order/${orderId}/cancel`, {headers});
                     // 리로드 대신 삭제 요청한 order의 상태값 변경
                     const order = this.orderList.find(order => order.id === orderId);
                     order.orderStatus = "CANCELED";

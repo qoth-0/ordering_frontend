@@ -9,6 +9,14 @@
   <input type="text" v-model="inputvalue2"/>
   <!-- @click : onclick과 같음 -->
   <button @click="showValue">변수 변경사항 확인</button>
+  <!-- computed 예제 -->
+  <div>
+    <h2>{{count}}</h2>
+    <button @click="increment">increment</button>
+  </div>
+  <div>
+    <h2>{{doubleCount}}</h2>
+  </div>
 </template>
 
 <script>
@@ -18,15 +26,24 @@ export default {
       myLang: "python",
       inputvalue1: "python2",
       inputvalue2: "python3",
+      count: 0,
     }
   },
   // vue생명주기에서 인스턴스가 생성되는 시점을 created라고 함
   // -> 화면이 열리기 전에 실행되는 함수
   created() {
-    this.myLang = "java";
-
+    this.myLang = "java"
+  },
+  // computed는 종속된 반응형 데이터(count)가 변경될 때만 함수를 다시 실행하여 값을 계산하는 계산 함수
+  computed: {
+    doubleCount() {
+      return this.count * 2;
+    }
   },
   methods: {
+    increment() {
+      this.count++;
+    },
     showValue() {
       alert(this.inputvalue2);
     }

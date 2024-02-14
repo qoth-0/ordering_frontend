@@ -1,5 +1,5 @@
 import OrderList from '@/views/OrderList';
-import ItemList from '@/views/ItemList';
+import OrderCart from '@/views/OrderCart';
 
 // 주문 관련 경로 관리
 export const orderRoutes = [ 
@@ -11,10 +11,10 @@ export const orderRoutes = [
         name: 'OrderList', 
         component: OrderList 
     },
-    // 상품목록
     {
-        path: '/items', 
-        name: 'ItemList', 
-        component: ItemList 
+        path: '/cart', 
+        name: 'OrderCart', 
+        component: OrderCart 
     },
+ 
 ];

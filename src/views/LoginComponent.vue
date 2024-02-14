@@ -3,7 +3,7 @@
         <div class="page-header text-center" style="margin-top: 20px">
             <h1>로그인</h1>
         </div>
-        <!-- submit은 기본적으로 폼 제출 시 브라우저가 페이지를 새로고침하므로 해당동작을 막기 위해 prevent사용 -->
+        <!-- submit은 기본적으로 폼 제출 시 브라우저가 페이지를 새로고침하므로 해당 동작(새로고침)을 막기 위해 prevent사용 -->
         <form @submit.prevent="doLogin">
             <div class="form-group">
                 <label for="email">이메일</label>
@@ -35,7 +35,7 @@ export default {
         async doLogin() {
             try {
                 const loginData = {email: this.email, password: this.password};
-                const response = await axios.post("http://localhost:8080/doLogin", loginData);
+                const response = await axios.post(`${process.env.VUE_APP_API_BASE_URL}/doLogin`, loginData);
                 const token = response.data.result.token;
                 if(token) { // 로그인 성공 시 토큰과 role 정보를 로컬스토리지에 저장
                     const decoded = jwtDecode(token); 
